@@ -46,7 +46,7 @@ import modelApi from "@/api/model.js";
 import { toRaw } from "vue";
 
 let data = reactive({
-  title: "Threejs高速公路施工展示",
+  title: "张掖公路养护道路施工3D示意图",
   flagLoadData: false,
   timeoutResize: "",
 
