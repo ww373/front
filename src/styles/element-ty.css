@@ -1,0 +1,144 @@
+/* ty UI改造 */
+.el-tabs__nav {
+  width: 100%;
+}
+
+.el-tabs__item {
+  width: 50%;
+}
+
+.el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active {
+  background: none;
+}
+
+.is-active {
+  color: #000000 !important;
+  background: #CDDEC2 !important;
+}
+
+.el-tabs__item {
+  color: #000000 !important;
+  background: #BCCBB3;
+}
+
+.el-tabs {
+  height: calc(100% - 2px);
+  background: #C1D2B8;
+  /* height: calc(100% - 2px); */
+  /* height: calc(100% - 1px);  */
+}
+
+.el-tabs__content {
+  height: auto;
+}
+
+
+.el-header,
+.el-footer {
+  color: #333;
+  /* text-align: center; */
+}
+
+.el-header {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: #C6D6BB;
+  /* padding:0; */
+}
+
+.el-footer {
+  height: 120px;
+  /* line-height: 120px; */
+  background-color: #242722;
+}
+
+.el-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+}
+
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+body>.el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
+
+.el-select {
+  width: 100%;
+}
+
+.el-slider__marks-text {
+  color: #000;
+}
+
+.el-button--primary {
+  --el-button-bg-color: #409eff;
+  --el-button-hover-bg-color: #409eff;
+}
+.el-button--primary:hover {
+  --el-button-hover-bg-color: #79bbff;
+}
+
+.el-button--warning.is-plain {
+  --el-button-bg-color: #fdf6ec;
+  --el-button-hover-text-color: #e6a23c;
+  --el-button-hover-bg-color: #fdf6ec;
+}
+.el-button--warning.is-plain:hover {
+  --el-button-hover-text-color: #fff;
+  --el-button-hover-bg-color: #e6a23c;
+}
+.el-button--danger.is-plain {
+  --el-button-bg-color: #fef0f0;
+  --el-button-hover-text-color: #f56c6c;
+  --el-button-hover-bg-color: #fef0f0;
+}
+.el-button--danger.is-plain:hover {
+  --el-button-hover-text-color: #fff;
+  --el-button-hover-bg-color: #f56c6c;
+}
+
+
+.el-dialog{
+  display: flex;
+  display: -ms-flex; /* 兼容IE */
+  flex-direction: column;
+  -ms-flex-direction: column; /* 兼容IE */
+  margin:0 !important;
+  position:absolute;
+  top:40%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  max-height:calc(100% - 30px);
+  max-width:calc(100% - 30px);
+}
+.el-dialog .el-dialog__body{
+  max-height: 100%;
+  flex: 1;
+  -ms-flex: 1 1 auto; /* 兼容IE */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.el-dialog__wrapper {
+  /*隐藏ie和edge中遮罩的滚动条*/
+  overflow: hidden;
+}

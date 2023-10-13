@@ -1,0 +1,240 @@
+.div-proload-three {
+  width: 0;
+  height: 0;
+  display: inline;
+  background-image: url("../assets/icon/1.png"), url("../assets/icon/2.png"),
+    url("../assets/icon/3.png"), url("../assets/icon/4.png"),
+    url("../assets/icon/5.png"), url("../assets/icon/6.png"),
+    url("../assets/icon/7.png"), url("../assets/icon/8.png"),
+    url("../assets/icon/9.png"), url("../assets/icon/10.png"),
+    url("../assets/icon/11.png"), url("../assets/icon/12.png"),
+    url("../assets/icon/13.png"), url("../assets/icon/14.png"),
+    url("../assets/icon/15.png"), url("../assets/icon/16.png"),
+    url("../assets/icon/17.png"), url("../assets/icon/18.png"),
+    url("../assets/icon/19.png"), url("../assets/icon/20.png"),
+    url("../assets/icon/h1.png"), url("../assets/icon/h3.png"),
+    url("../assets/icon/h4.png"), url("../assets/icon/h5.png"),
+    url("../assets/icon/h11.png"), url("../assets/icon/h12.png"),
+    url("../assets/icon/h13.png"), url("../assets/icon/h14.png"),
+    url("../assets/icon/h15.png"), url("../assets/icon/h16.png"),
+    url("../assets/icon/h17.png"), url("../assets/icon/h18.png"),
+    url("../assets/icon/h19.png"), url("../assets/icon/h20.png");
+}
+
+.icon-1 {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/1.png") 0 0 no-repeat,
+    url("../assets/icon/h1.png") 200px 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-1:hover {
+  background: url("../assets/icon/h1.png");
+  background-size: 60px 75px;
+}
+.icon-1-active {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/h1.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-1-active:hover {
+  background: url("../assets/icon/1.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+
+.icon-3 {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/3.png") 0 0 no-repeat,
+    url("../assets/icon/h3.png") 200px 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-3:hover {
+  background: url("../assets/icon/h3.png");
+  background-size: 60px 75px;
+}
+.icon-3-active {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/h3.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-3-active:hover {
+  background: url("../assets/icon/h3.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+
+.icon-4 {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/4.png") 0 0 no-repeat,
+    url("../assets/icon/h4.png") 200px 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-4:hover {
+  background: url("../assets/icon/h4.png");
+  background-size: 60px 75px;
+}
+.icon-4-active {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/h4.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-4-active:hover {
+  background: url("../assets/icon/4.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+
+.icon-5 {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/5.png") 0 0 no-repeat,
+    url("../assets/icon/h5.png") 200px 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-5:hover {
+  background: url("../assets/icon/h5.png");
+  background-size: 60px 75px;
+}
+.icon-5-active {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/h5.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-5-active:hover {
+  background: url("../assets/icon/5.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+
+.icon-11 {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/11.png") 0 0 no-repeat,
+    url("../assets/icon/h11.png") 200px 0 no-repeat,
+    url("../assets/icon/12.png") 200px 0 no-repeat,
+    url("../assets/icon/h12.png") 200px 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-11:hover {
+  background: url("../assets/icon/h11.png");
+  background-size: 60px 75px;
+}
+.icon-12-active {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/h11.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-12-active:hover {
+  background: url("../assets/icon/h11.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+
+.icon-13 {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/13.png") 0 0 no-repeat,
+    url("../assets/icon/h13.png") 200px 0 no-repeat,
+    url("../assets/icon/14.png") 200px 0 no-repeat,
+    url("../assets/icon/h14.png") 200px 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-13:hover {
+  background: url("../assets/icon/h13.png");
+  background-size: 60px 75px;
+}
+.icon-14-active {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/14.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-14-active:hover {
+  background: url("../assets/icon/h14.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+
+.icon-15 {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/15.png") 0 0 no-repeat,
+    url("../assets/icon/h15.png") 200px 0 no-repeat,
+    url("../assets/icon/16.png") 200px 0 no-repeat,
+    url("../assets/icon/h16.png") 200px 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-15:hover {
+  background: url("../assets/icon/h15.png");
+  background-size: 60px 75px;
+}
+.icon-16-active {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/16.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-16-active:hover {
+  background: url("../assets/icon/h16.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+
+.icon-17 {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/17.png") 0 0 no-repeat,
+    url("../assets/icon/h17.png") 200px 0 no-repeat,
+    url("../assets/icon/18.png") 200px 0 no-repeat,
+    url("../assets/icon/h18.png") 200px 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-17:hover {
+  background: url("../assets/icon/h17.png");
+  background-size: 60px 75px;
+}
+.icon-18-active {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/h18.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-18-active:hover {
+  background: url("../assets/icon/h18.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+
+.icon-19 {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/19.png") 0 0 no-repeat,
+    url("../assets/icon/h19.png") 200px 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-19:hover {
+  background: url("../assets/icon/h19.png");
+  background-size: 60px 75px;
+}
+
+.icon-20 {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/20.png") 0 0 no-repeat,
+    url("../assets/icon/h20.png") 200px 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-20:hover {
+  background: url("../assets/icon/h20.png");
+  background-size: 60px 75px;
+}
+.icon-20-active {
+  width: 60px;
+  height: 75px;
+  background: url("../assets/icon/20.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}
+.icon-20-active:hover {
+  background: url("../assets/icon/h20.png") 0 0 no-repeat;
+  background-size: 60px 75px;
+}

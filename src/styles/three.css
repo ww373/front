@@ -1,0 +1,372 @@
+.dn {
+  display: none;
+}
+
+.div-loading {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1000;
+  background-color: #171717;
+  /* background-color: #333333; */
+  /* background-color: #cccccc; */
+}
+
+.div-loading-panel {
+  width: 300px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 40%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+}
+
+.loading-show {
+  width: 300px;
+  height: 10px;
+  border-radius: 50px;
+  background-color: white;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.loading-progress {
+  height: inherit;
+  background-color: #007bff;
+  width: 0;
+}
+
+.center-canvas {
+  width: 100%;
+  height: 100%;
+
+  /* width: 95%;
+  height: 75%; */
+  /* background-color: aqua;
+    background: url("../../assets/background.png");
+    background-size: auto 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -moz-user-select: none;
+  /* Firefox私有属性 */
+  -webkit-user-select: none;
+  /* WebKit内核私有属性 */
+  -ms-user-select: none;
+  /* IE私有属性(IE10及以后) */
+  -khtml-user-select: none;
+  /* KHTML内核私有属性 */
+  -o-user-select: none;
+  /* Opera私有属性 */
+  user-select: none;
+  /* CSS3属性 */
+
+  overflow: hidden;
+
+  /* background: #ffffff; */
+
+  /* position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translate(-50%, 0);
+  z-index: 1; */
+}
+
+.div-canvas3d {
+  /* position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1; */
+  width: 100%;
+  height: 100%;
+  /* cursor: move; */
+}
+
+.menu {
+  position: absolute;
+  background-color: #fff;
+  width: 120px;
+  font-size: 12px;
+  color: #444040;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  white-space: nowrap;
+  z-index: 10000 !important;
+}
+
+.contextmenu-item {
+  overflow: hidden;
+  line-height: 21px !important;
+  text-align: center;
+}
+
+.contextmenu-item:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.contextmenu-item:hover {
+  cursor: pointer;
+  background: #66b1ff;
+  border-color: #66b1ff;
+  color: #fff;
+}
+
+.menu-bar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  z-index: 99;
+}
+
+.menu-bar-left {
+  width: 150px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  z-index: 100;
+}
+
+.menu-bar-leftlabel {
+  font-size: 14px;
+}
+
+.menu-bar-left .block {
+  width: 150px;
+}
+
+.menu-bar-item {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-bar-item img {
+  width: 60px;
+  height: 75px;
+}
+
+.menu-bar-item div {
+  color: #ffffff;
+  font-size: 0.8em;
+  text-shadow: 0 0 5px #00ffff, 0 0 5px #00ffff, 0 0 10px #00ffff,
+    0 0 15px #00ffff;
+}
+
+.model-label {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: #2d3086;
+    border-radius: 10px;
+    border: 1px solid #0007d4; */
+  border: 2px solid #ddd;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  width: 250px;
+
+  cursor: pointer;
+}
+
+.model-label .label-light {
+  color: #f2f2f2;
+  background: url("../assets/images/1.png");
+  font-size: 9px;
+  width: 250px;
+  height: 40px;
+  line-height: 40px;
+  text-indent: 15px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.model-label .label-dark {
+  color: #f2f2f2;
+  background: url("../assets/images/2.png");
+  font-size: 9px;
+  width: 250px;
+  height: 40px;
+  line-height: 40px;
+  text-indent: 15px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.model-label .firstdiv {
+  font-size: 16px !important;
+}
+
+.model-label .label-img img {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.model-label .label-number {
+  width: 120px;
+}
+
+.model-label .label-div1,
+.model-label .label-div2 {
+  float: left;
+}
+
+.model-label .label-div1 {
+  width: 25px;
+  overflow: hidden;
+}
+
+.model-label .label-div2 {
+  color: #fff;
+  font-size: 16px;
+  overflow: hidden;
+  /* text-align: center; */
+  /*   text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF, 0 0 40px #FFF; */
+}
+
+.model-label .label-cms {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  background: url("../assets/images/2.png") repeat;
+}
+
+.label-2d {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: #2d3086;
+    border-radius: 10px;
+    border: 1px solid #0007d4; */
+  border: 2px solid #ddd;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  width: 150px;
+
+  cursor: pointer;
+}
+
+.label-2d .label-light {
+  color: #f2f2f2;
+  background: url("../assets/images/1.png");
+  font-size: 9px;
+  width: 150px;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 15px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.label-2d .label-dark {
+  color: #f2f2f2;
+  background: url("../assets/images/2.png");
+  font-size: 9px;
+  width: 150px;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 15px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.label-2d .firstdiv {
+  font-size: 14px !important;
+}
+
+.label-2d .label-img img {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.label-2d .label-number {
+  width: 120px;
+}
+
+.label-2d .label-div1,
+.label-2d .label-div2 {
+  float: left;
+}
+
+.label-2d.label-div1 {
+  width: 25px;
+  overflow: hidden;
+}
+
+.label-2d .label-div2 {
+  color: #fff;
+  font-size: 14px;
+  overflow: hidden;
+  /* text-align: center; */
+  /*   text-shadow: 0 0 10px #FFF, 0 0 20px #FFF, 0 0 30px #FFF, 0 0 40px #FFF; */
+}
+
+.label-2d .label-cms {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  background: url("../assets/images/2.png") repeat;
+}
+
+.model-label .label-dark {
+  color: #000;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  text-shadow: 1px 1px #fff;
+}
+
+.canvas-font {
+  position: absolute;
+  left: 5000px;
+  bottom: 1000px;
+  z-index: -1;
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: url("@/assets/images/back.png"); */
+  z-index: 0;
+}
+
+.back img {
+  width: 100%;
+  height: 100%;
+}

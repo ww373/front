@@ -1,0 +1,294 @@
+.dn {
+    display: none;
+  }
+  .vb {
+    visibility: hidden;
+  }
+  .div-page {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .div-loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    background: #23262e;
+    z-index: 99999;
+  
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .div-top {
+    position: absolute;
+    left: calc(50% - 500px);
+    height: 50px;
+    width: 1000px;
+    background: url("../assets/interface/titleBackground.png") 0% 0% / 100% 100%
+      no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 1.3em;
+    font-weight: 400;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 5px #2a2dda, 0 0 5px #2a2dda, 0 0 10px #2a2dda,
+      0 0 15px #2a2dda;
+    z-index: 100;
+  }
+  .div-top-title {
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+    text-align: center;
+    cursor: pointer;
+  }
+  .top-content {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  @font-face {
+    font-family: myFirstFont;
+    src: url("../assets/interface/font/Liquid-Crystal/LiquidCrystal-Light-5.otf");
+  }
+  .div-timer {
+    font-family: myFirstFont;
+  
+    position: absolute;
+    left: calc(50% - 56px);
+    top: 45px;
+    font-size: 0.8em;
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 0 0 5px #2a2dda, 0 0 5px #2a2dda, 0 0 10px #2a2dda,
+      0 0 15px #2a2dda;
+    z-index: 100;
+  }
+  .div-view {
+    position: absolute;
+    right: calc(25% + 5px);
+    top: 25px;
+    z-index: 10000;
+  }
+  .div-canvas3d {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+  }
+  .center {
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+  }
+  
+  .center-box {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* display: flex;
+      flex-direction: column;
+      justify-content: center; position: relative;*/
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .center-box span {
+    color: #ffffff;
+    font-size: 0.8em;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    text-shadow: 0 0 5px #2a2dda, 0 0 5px #2a2dda, 0 0 10px #2a2dda,
+      0 0 15px #2a2dda;
+  }
+  
+  .center-title {
+    position: absolute;
+    left: 60px;
+    top: 40px;
+    z-index: 99;
+  }
+  .center-echart {
+    position: absolute;
+    top: 45px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: calc(100% - 45px);
+    width: 100%;
+    z-index: 10000;
+  }
+  
+  .center-canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* display: flex;
+      flex-direction: column;
+      justify-content: center; position: relative; bg3dA.jpg*/
+    align-items: center;
+    background: url("../assets/interface/aback.png") 0% 0% / 100% 100% no-repeat;
+    z-index: 1;
+  }
+  .center-canvas span {
+    color: #ffffff;
+    font-size: 0.8em;
+    font-weight: bolder;
+    text-decoration: none;
+    text-shadow: 0 0 5px #2a2dda, 0 0 5px #2a2dda, 0 0 10px #2a2dda,
+      0 0 15px #2a2dda;
+  }
+  .center-progress {
+    width: 260px;
+    height: 20px;
+    position: absolute;
+    left: calc(50% - 130px);
+    top: calc(50% - 25px);
+    align-items: center;
+    z-index: 10;
+  }
+  
+  .breadcrumb-content {
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    color: #ffffff;
+    position: absolute;
+    left: 60px;
+    top: 70px;
+    font-size: 0.8em;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+  }
+  .breadcrumb-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 10px;
+  }
+  .breadcrumb-item span:nth-child(1) {
+    font-size: 0.8em;
+    text-shadow: 0 0 5px #00ffff, 0 0 5px #00ffff, 0 0 10px #00ffff,
+      0 0 15px #00ffff;
+  }
+  .breadcrumb-item span:nth-child(2) {
+    font-size: 0.6em;
+    text-shadow: 0 0 5px #00ffff, 0 0 5px #00ffff, 0 0 10px #00ffff,
+      0 0 15px #00ffff;
+  }
+  
+  .div-dialog {
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /deep/ .el-tabs {
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    height: 90%;
+  }
+  /deep/ .el-tabs__header {
+    margin: 0;
+  }
+  /deep/.el-tabs__item {
+    font-size: 0.8em !important;
+    padding: 0 5px;
+    color: #ddd;
+  }
+  /deep/.is-active {
+    color: #ffffff;
+    font-weight: bolder;
+    text-decoration: none;
+    text-shadow: 0 0 5px #2a2dda, 0 0 5px #2a2dda, 0 0 10px #2a2dda,
+      0 0 15px #2a2dda;
+  }
+  /deep/ .el-tab-pane {
+    width: 100%;
+    height: 100%;
+  }
+  /deep/ .el-tabs__content {
+    width: 100%;
+    height: 85%;
+  }
+  /deep/ .el-dialog__header {
+    padding: 15px 15px 5px;
+  }
+  /deep/ .el-dialog__body {
+    padding: 15px;
+  }
+  
+  .menu {
+    position: absolute;
+    background-color: #fff;
+    width: 120px;
+    font-size: 12px;
+    color: #444040;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    white-space: nowrap;
+    z-index: 1000;
+  }
+  
+  .contextmenu-item {
+    overflow: hidden;
+    line-height: 21px !important;
+    text-align: center;
+  }
+  .contextmenu-item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .contextmenu-item:hover {
+    cursor: pointer;
+    background: #66b1ff;
+    border-color: #66b1ff;
+    color: #fff;
+  }
+  
+  .div-right-button {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.7rem;
+    z-index: 100;
+  
+    width: 0.62rem;
+  }
+  
+  .div-right-button img {
+    width: 0.62rem;
+    height: 0.54rem;
+  
+    cursor: pointer;
+  }
+  
