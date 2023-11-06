@@ -44,9 +44,9 @@ export default defineConfig(({
     // },
     // vite 相关配置
     server: {
-      port: 8081,
+      port: 5173,
       host: true,
-      open: true,
+      open: false,
       proxy: {
         // https://cn.vitejs.dev/config/#server-proxy
         '/dev-api': {
