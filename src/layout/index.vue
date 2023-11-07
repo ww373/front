@@ -1,26 +1,5 @@
 <template>
-  <!-- <div class="div-panel-right" v-if="data.ispanel">
-    <div class="div-panels">
-      <dl>
-        <dd>
-          <div class="panels-left">模型1</div>
-          <div class="panels-right">
-            <button class="btn" @click="changeAnimation(2)">取消</button>
-          </div>
-        </dd>
-        <dd>
-          <div class="panels-left">模型2</div>
-          <div class="panels-right">
-            <button class="btn" @click="changeAnimation(2)">取消</button>
-          </div>
-        </dd>
-      </dl>
-    </div>
-  </div> -->
-
   <ShowThree ref="show_three" v-if="data.flagLoadData" />
-  <!-- <div class="back"><img src="@/assets/images/back.png" /></div> -->
-
   <div class="dn">
     <img
       id="img_label"
@@ -33,25 +12,18 @@
 <script setup>
 import "@/styles/element-ty.css";
 import "@/styles/layout.css";
-
 import { ElMessage, ElMessageBox } from "element-plus";
-
-import dataRoad from "@/mock/1.js";
-import dataIdent from "@/mock/2.js";
-
+import wx from "weixin-webview-jssdk";
 import usePageStore from "@/store/modules/page";
 import ShowThree from "@/components/Show/ShowThree";
-
 import modelApi from "@/api/model.js";
 import { toRaw } from "vue";
-
+const route = useRoute(); // 第一步
 let data = reactive({
   title: "张掖公路养护道路施工3D示意图",
   flagLoadData: false,
   timeoutResize: "",
-
   ispanel: false,
-
   dataRoad: [],
   dataIdent: [],
   resourceList: [],
@@ -79,16 +51,28 @@ const getData = () => {
   let interval_loaddata = "";
 
   //获取数据
-  modelApi.getModelCreateDl().then((res) => {
+  modelApi.getModelCreateDl(route.query.token).then((res) => {
     data.dataRoad = res;
     loadIndex++;
-  });
+  }).catch(error => {
+    if(error?.response?.status == 401) {
+      wx.miniProgram.navigateTo({
+				url: '/pages/login/login',
+			})
+    }
+  })
 
   //获取数据
-  modelApi.getModelCreate().then((res) => {
+  modelApi.getModelCreate(route.query.token).then((res) => {
     data.dataIdent = res;
     loadIndex++;
-  });
+  }).catch(error => {
+    if(error?.response?.status == 401) {
+      wx.miniProgram.navigateTo({
+				url: '/pages/login/login',
+			})
+    }
+  })
 
   interval_loaddata = setInterval(() => {
     if (loadIndex == loadNum) {
