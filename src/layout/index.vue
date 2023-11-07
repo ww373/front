@@ -55,7 +55,7 @@ const getData = () => {
     data.dataRoad = res;
     loadIndex++;
   }).catch(error => {
-    if(error?.response?.status == 401) {
+    if(error?.response?.status === 401) {
       wx.miniProgram.navigateTo({
 				url: '/pages/login/login',
 			})
@@ -67,7 +67,7 @@ const getData = () => {
     data.dataIdent = res;
     loadIndex++;
   }).catch(error => {
-    if(error?.response?.status == 401) {
+    if(error?.response?.status === 401) {
       wx.miniProgram.navigateTo({
 				url: '/pages/login/login',
 			})
@@ -142,10 +142,6 @@ const handleData = () => {
   }
 
   data.resourceList = resourceList;
-
-  console.log(111, resourceList);
-
-  // console.log(resourceList);
 };
 
 let vm = {

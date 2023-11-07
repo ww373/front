@@ -198,17 +198,14 @@ class SceneClass extends ThreeClass {
       object = this.checkParent(object);
 
       if (this.model1.name == object.name) {
-        console.log("不能重复");
         return;
       }
 
       if (!this.model1 && this.clickNum == 0) {
         this.model1 = object;
-        console.log("选中第1个");
       }
       if (!this.model2 && this.clickNum == 1) {
         this.model2 = object;
-        console.log("选中第2个");
 
         // let x1 = this.model1.userData.data.x - 0;
         // let y1 = this.model1.userData.data.y - 0;
@@ -219,7 +216,6 @@ class SceneClass extends ThreeClass {
         let y1 = this.model1.userData.data.y_real - 0;
         let y2 = this.model2.userData.data.y_real - 0;
         let dis = Math.abs(y1 - y2); //p1.distanceTo(p2);
-        console.log(dis);
 
         let name1 = this.model1.name;
         let name2 = this.model2.name;

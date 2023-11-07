@@ -90,7 +90,6 @@ onMounted(() => {
   usePageStore().threeApp = threeApp;
 
   loading(() => {
-    console.log("yes load");
     data.isdn = true;
     usePageStore().dataLayout.ispanel = true;
   });

@@ -621,8 +621,6 @@ class OrbitControls extends EventDispatcher {
 
 			if (intersects.length > 0) {
 				let point = intersects[0].point;
-				console.log(point);
-
 				rotateOffset.set(point.x, point.y, point.z);
 			}
 
