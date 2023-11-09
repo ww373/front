@@ -10,7 +10,7 @@ function getModelCreateDl(token) {
     return request({
         url: '/api/model/createDl',
         method: 'get',
-        Headers: {
+        headers: {
             Authorization: `Bearer ${token}`,
             Accept: "application/json",
         }
@@ -22,7 +22,7 @@ function getModelCreate(token) {
     return request({
         url: '/api/model/create',
         method: 'get',
-        Headers: {
+        headers: {
             Authorization: `Bearer ${token}`,
             Accept: "application/json",
         }

@@ -51,21 +51,20 @@ const getData = () => {
   let interval_loaddata = "";
 
   //获取数据
-  modelApi.getModelCreateDl(route.query.token).then((res) => {
-    data.dataRoad = res;
-    loadIndex++;
-  }).catch(error => {
-    if(error?.response?.status === 401) {
-      wx.miniProgram.navigateTo({
-				url: '/pages/login/login',
-			})
-    }
-  })
-
-  //获取数据
   modelApi.getModelCreate(route.query.token).then((res) => {
     data.dataIdent = res;
     loadIndex++;
+    //获取数据
+    modelApi.getModelCreateDl(route.query.token).then((res) => {
+      data.dataRoad = res;
+      loadIndex++;
+    }).catch(error => {
+      if(error?.response?.status === 401) {
+        wx.miniProgram.navigateTo({
+	  			url: '/pages/login/login',
+	  		})
+      }
+    })
   }).catch(error => {
     if(error?.response?.status === 401) {
       wx.miniProgram.navigateTo({
