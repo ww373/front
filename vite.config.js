@@ -49,10 +49,11 @@ export default defineConfig(({
       open: false,
       proxy: {
         // https://cn.vitejs.dev/config/#server-proxy
-        '/dev-api': {
-          target: 'http://localhost:8080',
+        // 代理 API 请求到 Laravel 后端
+        '/api': {
+          target: 'http://127.0.0.1:8000',
           changeOrigin: true,
-          rewrite: (p) => p.replace(/^\/dev-api/, '')
+          rewrite: (p) => p.replace(/^\/api/, '/api')
         }
       }
     },

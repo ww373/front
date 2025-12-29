@@ -48,16 +48,28 @@ class SceneClass extends ThreeClass {
   }
 
   useModel() {
+    // ==================== 3D场景渲染开始 ====================
+    console.log('\n🎨 [3D渲染] 开始放置模型到场景...');
 
     this.scene.add(this.group);
 
     let dlArr = this.dataRoad.dl;
+
+    // 统计变量
+    let renderedDlCount = 0;
+    let renderedBsCount = 0;
+    let skippedBsCount = 0;
+    let missingModelIds = [];
+
     if (dlArr) {
+      console.log(`  数据源: ${dlArr.length} 条道路记录`);
+
       for (let i = 0; i < dlArr.length; i++) {
         let dl = dlArr[i];
         let bs = dlArr[i].bs;
         let type = dlArr[i].type - 0;
 
+        // ==================== 放置道路模型 ====================
         for (let j = 0; j < this.resourceList.length; j++) {
           let resource = this.resourceList[j];
 
@@ -72,19 +84,26 @@ class SceneClass extends ThreeClass {
             } else {
               this.scene.add(model);
             }
+            renderedDlCount++;
+            console.log(`  ✓ 道路模型已添加: id=${dl.id}, 添加到=${i === 0 ? 'group' : 'scene'}`);
           }
         }
 
+        // ==================== 放置结构物模型 ====================
         if (bs) {
+          console.log(`\n  📍 处理道路 ${i + 1} 的 ${bs.length} 个结构物...`);
+
           for (let j = 0; j < bs.length; j++) {
             let bsdata = bs[j];
             // console.log(bsdata);
             let name = bsdata.name;
+            let modelFound = false;
 
             for (let k = 0; k < this.resourceList.length; k++) {
               let resource = this.resourceList[k];
 
               if (resource.types == "bs" && resource.id == bsdata.d_model_id) {
+                modelFound = true;
                 let model = toRaw(resource.entity).clone();
 
                 let x = bsdata.x - 0;
@@ -125,8 +144,18 @@ class SceneClass extends ThreeClass {
                 model.types = "bs";
                 this.clickArr.push(model);
 
-
+                renderedBsCount++;
+                console.log(`    ✓ [${j + 1}/${bs.length}] ${name || '未命名'} (id=${bsdata.d_model_id}) - pos:(${x}, ${z}, ${-y}), scale:${sf.toFixed(2)}, y_real:${y_real}`);
               }
+            }
+
+            // 检查是否找到模型
+            if (!modelFound) {
+              skippedBsCount++;
+              if (!missingModelIds.includes(bsdata.d_model_id)) {
+                missingModelIds.push(bsdata.d_model_id);
+              }
+              console.warn(`    ✗ [${j + 1}/${bs.length}] ${name || '未命名'} (id=${bsdata.d_model_id}) - 模型文件未加载，已跳过！`);
             }
           }
 
@@ -163,6 +192,37 @@ class SceneClass extends ThreeClass {
       this.minPosition = new THREE.Vector3(this.area.x1, 3000, this.area.z);
       this.maxPosition = new THREE.Vector3(this.area.x, 0, this.area.z1);
 
+      // ==================== 渲染统计 ====================
+      console.log(`\n✅ [3D渲染完成] 场景统计:`);
+      console.log(`  └─ 道路模型: ${renderedDlCount} 个`);
+      console.log(`  └─ 结构物模型: ${renderedBsCount} 个 (成功)`);
+
+      if (skippedBsCount > 0) {
+        console.error(`  └─ 跳过的结构物: ${skippedBsCount} 个 (模型文件缺失)`);
+        console.error(`  └─ 缺失的模型ID列表:`, missingModelIds);
+        console.error(`  ⚠️ 警告: 有 ${skippedBsCount} 个结构物因为找不到对应的GLB文件而未能渲染！`);
+        console.error(`  → 这可能是因为：`);
+        console.error(`     1. 后端 create API 返回的模型定义不完整`);
+        console.error(`     2. GLB文件加载失败（网络错误、404等）`);
+        console.error(`     3. createDl 中的 d_model_id 与 create 中的 id 不匹配`);
+      }
+
+      console.log(`  └─ 场景中心: (${this.groupCenter.x.toFixed(2)}, ${this.groupCenter.y.toFixed(2)}, ${this.groupCenter.z.toFixed(2)})`);
+      console.log(`  └─ 场景尺寸: (${this.groupSize.x.toFixed(2)}, ${this.groupSize.y.toFixed(2)}, ${this.groupSize.z.toFixed(2)})`);
+      console.log(`  └─ 相机位置: (${this.camera.position.x.toFixed(2)}, ${this.camera.position.y.toFixed(2)}, ${this.camera.position.z.toFixed(2)})`);
+
+      // 存储到全局变量供调试
+      window.__DEBUG_SCENE_STATS__ = {
+        renderedDlCount,
+        renderedBsCount,
+        skippedBsCount,
+        missingModelIds,
+        totalExpected: dlArr.reduce((sum, dl) => sum + (dl.bs ? dl.bs.length : 0), 0),
+        groupCenter: this.groupCenter,
+        groupSize: this.groupSize
+      };
+      // ====================================================
+
     }
   }
 
@@ -185,7 +245,7 @@ class SceneClass extends ThreeClass {
 
     let mainCanvas = document.getElementsByTagName("canvas")[0];
 
-    // 将屏幕坐标转为标准设备坐标(支持画布非全屏的情况) 
+    // 将屏幕坐标转为标准设备坐标(支持画布非全屏的情况)
     mouse.x = ((e.clientX - mainCanvas.getBoundingClientRect().left) / mainCanvas.offsetWidth) * 2 - 1;
     mouse.y = -((e.clientY - mainCanvas.getBoundingClientRect().top) / mainCanvas.offsetHeight) * 2 + 1;
 

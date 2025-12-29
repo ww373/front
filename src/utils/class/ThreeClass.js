@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import * as TWEEN from "tween";
 
 import {
   OrbitControls
@@ -207,25 +206,28 @@ class ThreeClass {
   //控制器
   initControls() {
     this.controls = new OrbitControls(this.camera, this.container, this.scene);
+
+    // 距离限制
     this.controls.minDistance = 1500;
     this.controls.maxDistance = 7000;
+
+    // 角度限制
     this.controls.maxPolarAngle = Math.PI * 0.499;
 
-    this.controls.screenSpacePanning = false;
-    this.controls.zoomSpeed = 2;
+    // 启用平移功能
+    this.controls.enablePan = true;
 
+    // 鼠标按键映射
     this.controls.mouseButtons = {
-      LEFT: THREE.MOUSE.ROTATE,
-      MIDDLE: THREE.MOUSE.DOLLY,
-      RIGHT: THREE.MOUSE.PAN,
+      LEFT: THREE.MOUSE.ROTATE,   // 左键：旋转
+      MIDDLE: THREE.MOUSE.DOLLY,  // 中键：缩放
+      RIGHT: THREE.MOUSE.PAN,     // 右键：平移
     }
 
+    // 触摸屏操作映射
     this.controls.touches = {
-      // ONE: THREE.TOUCH.PAN,
-      // TWO: THREE.TOUCH.ROTATE,
-
-      ONE: THREE.TOUCH.PAN, TWO: THREE.TOUCH.DOLLY_ROTATE,
-      // ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN,
+      ONE: THREE.TOUCH.ROTATE,           // 单指：旋转
+      TWO: THREE.TOUCH.DOLLY_PAN,        // 双指：缩放+平移
     }
   }
 
