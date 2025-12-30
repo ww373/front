@@ -305,22 +305,23 @@ class SceneClass extends ThreeClass {
 
   //标注
   createSprite(text) {
+    // ⚡ 性能优化：减小Canvas尺寸（236→128, 85→64）
     let canvas = document.createElement("canvas");
-    canvas.width = 236;
-    canvas.height = 85;
+    canvas.width = 128;
+    canvas.height = 64;
 
     let len = text.length + 2;
-    let fontsize = 45;
+    let fontsize = 28; // ⚡ 降低字体大小（45→28）
     let lentotal = len * fontsize;
-    let left = 236 / 2 - lentotal / 4;
-    let top = 85 / 2;
+    let left = 128 / 2 - lentotal / 4;
+    let top = 64 / 2;
 
-    let context = canvas.getContext("2d");
+    let context = canvas.getContext("2d", { alpha: true, willReadFrequently: false }); // ⚡ 优化Canvas上下文
     context.beginPath();
     // let img = document.getElementById("img_label");
     // context.drawImage(img, 0, 0, 236, 85);
     context.fillStyle = 'rgba(10, 10, 10, 0.8)';
-    context.fillRect(0, 0, 236, 85);
+    context.fillRect(0, 0, 128, 64);
     context.font = `${fontsize}px Microsoft YaHei`;
     context.textBaseline = "middle";
     context.fillStyle = "#fff";
@@ -328,8 +329,9 @@ class SceneClass extends ThreeClass {
     context.fill();
     context.stroke();
 
-    let url = canvas.toDataURL("image/png");
-    let texture = new THREE.TextureLoader().load(url);
+    // ⚡ 直接使用Canvas作为纹理（避免toDataURL和重新加载）
+    let texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
 
     let material = new THREE.SpriteMaterial({
       map: texture,
@@ -339,7 +341,6 @@ class SceneClass extends ThreeClass {
       depthTest: false,
       depthWrite: false,
     });
-    material.needsUpdate = true;
 
     let particle = new THREE.Sprite(material);
     particle.scale.set(10, 3.6, 10);
