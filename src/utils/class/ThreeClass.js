@@ -214,14 +214,14 @@ class ThreeClass {
     // 角度限制
     this.controls.maxPolarAngle = Math.PI * 0.499;
 
-    // 启用平移功能
-    this.controls.enablePan = true;
+    // 🎯 禁用默认平移功能（我们将手动实现）
+    this.controls.enablePan = false;
 
     // 鼠标按键映射
     this.controls.mouseButtons = {
       LEFT: THREE.MOUSE.ROTATE,   // 左键：旋转
       MIDDLE: THREE.MOUSE.DOLLY,  // 中键：缩放
-      RIGHT: THREE.MOUSE.PAN,     // 右键：平移
+      RIGHT: null,                // 右键：禁用（手动处理）
     }
 
     // 触摸屏操作映射
@@ -233,6 +233,107 @@ class ThreeClass {
     // ⚡ 启用阻尼（平滑交互）
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.05;
+
+    // 🎯 自定义平移行为：右键上下拖动改为前后移动
+    this._setupCustomPan();
+  }
+
+  /**
+   * 🎯 自定义平移行为
+   * - 右键上下拖动：沿相机视线方向前后移动（方便从道路头部移动到尾部）
+   * - 右键左右拖动：水平左右平移（保持原有行为）
+   */
+  _setupCustomPan() {
+    const _this = this;
+    let isPanning = false;
+    let previousMousePosition = { x: 0, y: 0 };
+
+    // 监听鼠标按下事件
+    this.container.addEventListener('mousedown', (event) => {
+      if (event.button === 2) { // 右键
+        isPanning = true;
+        previousMousePosition = {
+          x: event.clientX,
+          y: event.clientY
+        };
+        event.preventDefault(); // 阻止右键菜单
+      }
+    });
+
+    // 监听鼠标移动事件
+    this.container.addEventListener('mousemove', (event) => {
+      if (isPanning) {
+        const deltaX = event.clientX - previousMousePosition.x;
+        const deltaY = event.clientY - previousMousePosition.y;
+
+        // 执行自定义平移
+        _this._customPan(deltaX, deltaY);
+
+        previousMousePosition = {
+          x: event.clientX,
+          y: event.clientY
+        };
+      }
+    });
+
+    // 监听鼠标释放事件
+    this.container.addEventListener('mouseup', (event) => {
+      if (event.button === 2 && isPanning) {
+        isPanning = false;
+      }
+    });
+
+    // 监听鼠标离开画布事件
+    this.container.addEventListener('mouseleave', () => {
+      if (isPanning) {
+        isPanning = false;
+      }
+    });
+
+    // 禁用右键菜单
+    this.container.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+    });
+  }
+
+  /**
+   * 执行自定义平移
+   * @param {number} deltaX - 鼠标 X 轴移动距离
+   * @param {number} deltaY - 鼠标 Y 轴移动距离
+   */
+  _customPan(deltaX, deltaY) {
+    const camera = this.camera;
+    const controls = this.controls;
+
+    // 计算相机到目标点的距离
+    const offset = new THREE.Vector3();
+    offset.copy(camera.position).sub(controls.target);
+    let targetDistance = offset.length();
+
+    // 根据FOV和距离计算平移速度
+    const fovScale = Math.tan((camera.fov / 2) * Math.PI / 180.0) * targetDistance;
+    const panSpeed = 1.5; // 平移速度系数
+
+    // 🎯 左右拖动：水平左右平移
+    const panLeft = new THREE.Vector3();
+    panLeft.setFromMatrixColumn(camera.matrix, 0); // 相机的右方向向量
+    panLeft.multiplyScalar(-deltaX * fovScale / this.H * panSpeed);
+
+    // 🎯 上下拖动：沿相机视线方向前后移动
+    const panForward = new THREE.Vector3();
+    panForward.copy(camera.position).sub(controls.target).normalize();
+    panForward.multiplyScalar(deltaY * fovScale / this.H * panSpeed);
+
+    // 应用平移
+    const panOffset = new THREE.Vector3();
+    panOffset.add(panLeft);
+    panOffset.add(panForward);
+
+    camera.position.add(panOffset);
+    controls.target.add(panOffset);
+
+    // 触发 controls 更新
+    controls.update();
   }
 
   //渲染器

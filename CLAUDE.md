@@ -833,6 +833,146 @@ Override these methods when extending:
 
 ## Recent Updates
 
+### 2025-12-30: Custom Pan Controls - Forward/Backward Camera Movement
+
+**What Changed**:
+- ✅ Reimplemented right-click pan behavior for better user experience
+- ✅ Right-click up/down drag: Move camera forward/backward along view direction
+- ✅ Right-click left/right drag: Horizontal pan (maintains original behavior)
+- ✅ Updated interaction hints to explain new controls
+
+**Modified Files**:
+- [src/utils/class/ThreeClass.js](src/utils/class/ThreeClass.js) - Custom pan implementation
+- [src/components/Show/ShowThree/index.vue](src/components/Show/ShowThree/index.vue) - Updated hints
+
+**Why This Was Needed**:
+- User reported difficulty navigating from road start to end point
+- Original vertical pan (up/down movement) had limited practical use
+- Forward/backward movement allows quick traversal along road length
+- Enables easy inspection of distant models without relying on double-click focus
+
+**Implementation Details**:
+
+1. **Custom Pan System** ([ThreeClass.js:246-337](src/utils/class/ThreeClass.js#L246-L337)):
+   - Disabled OrbitControls default pan behavior (`enablePan: false`)
+   - Set `mouseButtons.RIGHT = null` to prevent default handling
+   - Added manual mouse event listeners for right-click drag
+   - Calculates pan offset based on camera view direction
+
+2. **Pan Direction Logic** ([ThreeClass.js:304-337](src/utils/class/ThreeClass.js#L304-L337)):
+   - **Horizontal drag (deltaX)**: Pan left/right using camera's right vector
+   - **Vertical drag (deltaY)**: Move forward/backward along camera-to-target direction
+   - Speed scales with distance to maintain consistent feel
+   - Uses FOV-based calculation for perspective-correct movement
+
+3. **User Experience**:
+   - Smooth camera transitions (works with existing damping)
+   - Right-click menu disabled on canvas (`contextmenu` event prevented)
+   - Compatible with existing controls (left-click rotate, middle-click zoom, double-click focus)
+   - Works on both mouse and trackpad
+
+**Usage**:
+1. **To move forward/backward**: Right-click and drag up/down
+2. **To pan left/right**: Right-click and drag left/right
+3. **Tip**: Combine with rotation and zoom for full scene exploration
+
+**Configuration**:
+- Pan speed: Adjustable via `panSpeed` variable in `_customPan()` method (default: 1.5)
+- Higher values = faster movement, lower values = more precise control
+
+**Benefits**:
+- 🚀 Quick navigation from road start to end (K2200+000 → K2200+600)
+- 🎯 Easy access to distant models without multiple focus clicks
+- 🖱️ Intuitive control scheme (up/down = forward/backward)
+- 📱 Maintains touch support on mobile devices
+
+**Related Documentation**:
+- For deployment: See [集成配置指南.md](集成配置指南.md)
+- For debugging: See [DEBUG_GUIDE.md](DEBUG_GUIDE.md)
+
+### 2025-12-30: Enhanced 3D Camera Controls and User Interaction
+
+**What Changed**:
+- ✅ Implemented double-click to focus on individual models
+- ✅ Added reset camera button with smooth animation transitions
+- ✅ Added interactive hints overlay for better user guidance
+- ✅ Improved camera control experience for viewing distant models
+
+**Modified Files**:
+- [src/utils/class/SceneClass.js](src/utils/class/SceneClass.js) - Added focus and reset methods
+- [src/components/Show/ShowThree/index.vue](src/components/Show/ShowThree/index.vue) - Added UI controls and hints
+
+**New Features**:
+
+1. **Double-Click to Focus** (双击聚焦模型):
+   - User can double-click any structure (防撞桶, 路栏, etc.) to focus camera on it
+   - Camera smoothly transitions to optimal viewing distance
+   - Rotation center updates to selected model
+   - Console logs: `🎯 聚焦到模型: [name], 位置: (x, y, z)`
+
+2. **Reset Camera Button** (重置视角按钮):
+   - Floating button in top-right corner of 3D viewport
+   - Click to return to initial camera position and target
+   - Uses smooth easeInOutCubic animation (800ms duration)
+   - Mobile-responsive: shows icon only on small screens
+   - Console logs: `🔄 重置视角到初始位置`
+
+3. **Interactive Hints** (操作提示):
+   - Bottom overlay shows usage tips on first load
+   - Tips: "💡 双击模型可聚焦查看细节" and "🖱️ 右键拖动可平移视角"
+   - User can dismiss by clicking "×" button
+   - Auto-hides on mobile for better screen space
+
+**Implementation Details**:
+
+- **Camera Animation** ([SceneClass.js:369-397](src/utils/class/SceneClass.js#L369-L397)):
+  - Custom `animateCameraTo()` method using requestAnimationFrame
+  - EaseInOutCubic easing for smooth transitions
+  - Interpolates both camera position and OrbitControls target
+  - No external animation library needed (pure JavaScript)
+
+- **Focus Calculation** ([SceneClass.js:343-366](src/utils/class/SceneClass.js#L343-L366)):
+  - Calculates world position of clicked model
+  - Determines optimal distance based on model size (min 300 units)
+  - Preserves current viewing angle while adjusting distance
+  - Updates OrbitControls target to model center
+
+- **Initial State Preservation** ([SceneClass.js:214-217](src/utils/class/SceneClass.js#L214-L217)):
+  - Saves camera position and target after scene setup
+  - Stored in `this.initialCameraPosition` and `this.initialControlsTarget`
+  - Used by `resetCamera()` method for accurate restoration
+
+**User Experience Improvements**:
+
+| Problem | Solution | Benefit |
+|---------|----------|---------|
+| Cannot view distant models in detail | Double-click to focus on any model | Easy inspection of all structures |
+| Lost after navigating around scene | Reset camera button | Quick return to overview |
+| Unclear how to interact with scene | Interactive hints overlay | Better user onboarding |
+| Fixed rotation center limits exploration | Dynamic center on focus | Natural navigation workflow |
+
+**Why This Was Needed**:
+- User reported difficulty viewing models far from scene center
+- Fixed OrbitControls target prevented close-up inspection
+- Existing right-click pan required multiple steps to reach distant objects
+- No visual guidance for new users on interaction methods
+
+**Usage**:
+1. **To focus on a model**: Double-click any structure
+2. **To reset view**: Click "重置视角" button (top-right)
+3. **To dismiss hints**: Click "×" on bottom hint bar
+
+**Testing**:
+- ✅ Double-click correctly identifies and focuses on clicked model
+- ✅ Camera transitions smoothly (no jumps or glitches)
+- ✅ Reset button returns to exact initial position
+- ✅ UI responsive on mobile devices (button shows icon only)
+- ✅ Compatible with existing controls (rotation, zoom, pan)
+
+**Related Documentation**:
+- For deployment: See [集成配置指南.md](集成配置指南.md)
+- For debugging: See [DEBUG_GUIDE.md](DEBUG_GUIDE.md)
+
 ### 2025-12-30: 3D Rendering Performance Optimization
 
 **What Changed**:
